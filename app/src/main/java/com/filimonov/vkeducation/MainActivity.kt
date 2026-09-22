@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             VkEducationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
+                        name = "Vk Education",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
