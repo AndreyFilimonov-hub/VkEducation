@@ -39,13 +39,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             VkEducationTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Vk Education",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
                     Content(modifier = Modifier.padding(innerPadding))
                 }
             }
@@ -117,15 +110,29 @@ fun Content(modifier: Modifier = Modifier) {
                 }
             }
         )
+        Spacer(Modifier.height(16.dp))
+        ShareTextButton(
+            onClick = {
+                if (text.isNotBlank()) {
+                    val sendIntent = Intent(Intent.ACTION_SEND).apply {
+                        putExtra(Intent.EXTRA_TEXT, text)
+                        type = "text/plain"
+                    }
+
+                    val shareIntent = Intent.createChooser(sendIntent, null)
+                    context.startActivity(shareIntent)
+                    isError = false
+                    errorText = ""
+                } else {
+                    isError = true
+                    errorText = "Введите текст"
+                }
+            }
+        )
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
 private fun OpenSecondActivityButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit
@@ -151,6 +158,17 @@ private fun CallFriendButton(
     }
 }
 
+@Composable
+private fun ShareTextButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    Button(
+        modifier = modifier,
+        onClick = onClick
+    ) {
+        Text("Поделиться текстом")
+    }
 }
 
 @Preview(showBackground = true)
