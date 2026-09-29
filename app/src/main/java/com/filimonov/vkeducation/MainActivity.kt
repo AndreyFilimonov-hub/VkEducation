@@ -29,6 +29,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.core.net.toUri
 import com.filimonov.vkeducation.ui.theme.VkEducationTheme
 
 class MainActivity : ComponentActivity() {
@@ -61,6 +62,8 @@ fun Content(modifier: Modifier = Modifier) {
     ) {
         val context = LocalContext.current
         val focusManager = LocalFocusManager.current
+
+        val phoneNumberRegex = """^((\+\d{1,2}\s?)?(\(\d{1,3}\)|\d{1,3})[\s.-]?\d{3}[\s.-]?\d{4})$""".toRegex()
 
         var text by remember { mutableStateOf("") }
         var isError by remember { mutableStateOf(false) }
@@ -99,6 +102,21 @@ fun Content(modifier: Modifier = Modifier) {
                 }
             }
         )
+        Spacer(Modifier.height(16.dp))
+        CallFriendButton(
+            onClick = {
+                if (phoneNumberRegex.matches(text)) {
+                    val uri = "tel:$text".toUri()
+                    val intent = Intent(Intent.ACTION_DIAL, uri)
+                    context.startActivity(intent)
+                    isError = false
+                    errorText = ""
+                } else {
+                    isError = true
+                    errorText = "Некорректный номер телефона. Номер телефона должен начинаться с +"
+                }
+            }
+        )
     }
 }
 
@@ -117,6 +135,19 @@ private fun OpenSecondActivityButton(
         onClick = onClick
     ) {
         Text("Открыть вторую Activity")
+    }
+}
+
+@Composable
+private fun CallFriendButton(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    Button(
+        modifier = modifier,
+        onClick = onClick
+    ) {
+        Text("Позвонить другу")
     }
 }
 
