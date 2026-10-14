@@ -1,4 +1,8 @@
-package com.filimonov.vkeducation
+package com.filimonov.vkeducation.listscreen
+
+import com.filimonov.vkeducation.App
+import com.filimonov.vkeducation.Category
+import com.filimonov.vkeducation.R
 
 object TestData {
 
