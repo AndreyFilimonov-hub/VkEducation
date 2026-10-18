@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation
+package com.filimonov.vkeducation.listscreen
 
 data class App(
     val id: Int,

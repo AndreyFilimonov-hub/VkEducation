@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.appscreen.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -11,17 +11,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.filimonov.vkeducation.App
-import com.filimonov.vkeducation.listscreen.AppContent
+import com.filimonov.vkeducation.listscreen.App
+import com.filimonov.vkeducation.listscreen.ui.AppContent
 import com.filimonov.vkeducation.listscreen.TestData
 
 @Composable
 fun ShowcaseScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onShowcaseAppClick: () -> Unit
 ) {
     Column(
-        modifier = modifier.fillMaxWidth()
-            .padding(vertical = 16.dp),
+        modifier = modifier.fillMaxWidth(),
         verticalArrangement = Arrangement.Center
     ) {
         Text(
@@ -39,7 +39,8 @@ fun ShowcaseScreen(
                     1 -> TestData.showcaseFirstPage
                     2 -> TestData.showcaseSecondPage
                     else -> TestData.showcaseThirdPage
-                }
+                },
+                onShowcaseAppClick = onShowcaseAppClick
             )
         }
     }
@@ -48,11 +49,12 @@ fun ShowcaseScreen(
 @Composable
 private fun ShowcaseItem(
     modifier: Modifier = Modifier,
-    apps: List<App>
+    apps: List<App>,
+    onShowcaseAppClick: () -> Unit
 ) {
     Column(modifier = modifier.fillMaxWidth()) {
-        AppContent(app = apps[0])
-        AppContent(app = apps[1])
-        AppContent(app = apps[2])
+        AppContent(app = apps[0], onAppClick = onShowcaseAppClick)
+        AppContent(app = apps[1], onAppClick = onShowcaseAppClick)
+        AppContent(app = apps[2], onAppClick = onShowcaseAppClick)
     }
 }

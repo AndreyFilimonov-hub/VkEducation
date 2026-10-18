@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.appscreen.ui
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth

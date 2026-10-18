@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation
+package com.filimonov.vkeducation.listscreen
 
 enum class Category(val title: String) {
     GAME("Игра"),

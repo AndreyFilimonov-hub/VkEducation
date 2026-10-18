@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.appscreen.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -11,10 +11,14 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.filimonov.vkeducation.appscreen.AppDetails
+import com.filimonov.vkeducation.appscreen.Category
+import com.filimonov.vkeducation.appscreen.SimilarApp
 import com.filimonov.vkeducation.ui.theme.VkEducationTheme
 
 @Composable
@@ -25,65 +29,78 @@ fun AppDetailsContent(
     onInstallClick: () -> Unit,
     onReadMoreClick: () -> Unit,
     onDeveloperClick: () -> Unit,
+    onShowcaseAppClick: () -> Unit,
     onSimilarAppDownloadClick: (SimilarApp) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val appDetails = content.appDetails
     val descriptionCollapsed = content.descriptionCollapsed
 
-    Column(modifier.verticalScroll(rememberScrollState())) {
-        Toolbar(
-            onBackClick = onBackClick,
-            onShareClick = onShareClick,
-        )
-        Spacer(Modifier.height(8.dp))
-        AppDetailsHeader(
-            appDetails = appDetails,
-            modifier = Modifier.padding(horizontal = 16.dp),
-        )
-        Spacer(Modifier.height(16.dp))
-        InstallButton(
-            onClick = onInstallClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp)
-        )
-        if (content.similarApps.isNotEmpty()) {
-            Spacer(Modifier.height(12.dp))
-            SimilarApps(
-                apps = content.similarApps,
-                onDownloadClick = onSimilarAppDownloadClick,
+    Scaffold(modifier = modifier) { innerPadding ->
+        Column(
+            Modifier
+                .verticalScroll(rememberScrollState())
+                .padding(innerPadding)
+        ) {
+            Toolbar(
+                onBackClick = onBackClick,
+                onShareClick = onShareClick,
+            )
+            Spacer(Modifier.height(8.dp))
+            AppDetailsHeader(
+                appDetails = appDetails,
                 modifier = Modifier.padding(horizontal = 16.dp),
             )
+            Spacer(Modifier.height(16.dp))
+            InstallButton(
+                onClick = onInstallClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp)
+            )
+            if (content.similarApps.isNotEmpty()) {
+                Spacer(Modifier.height(12.dp))
+                SimilarApps(
+                    apps = content.similarApps,
+                    onDownloadClick = onSimilarAppDownloadClick,
+                    modifier = Modifier.padding(horizontal = 16.dp),
+                )
+            }
+            Spacer(Modifier.height(12.dp))
+            ScreenshotsList(
+                screenshotUrlList = appDetails.screenshotUrlList ?: listOf(),
+                contentPadding = PaddingValues(horizontal = 16.dp),
+            )
+            Spacer(Modifier.height(12.dp))
+            AppDescription(
+                description = appDetails.description,
+                collapsed = descriptionCollapsed,
+                onReadMoreClick = onReadMoreClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 16.dp),
+            )
+            Spacer(Modifier.height(12.dp))
+            HorizontalDivider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = MaterialTheme.colorScheme.outlineVariant,
+            )
+            Spacer(Modifier.height(12.dp))
+            Developer(
+                name = appDetails.developer,
+                onClick = onDeveloperClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(start = 16.dp),
+            )
+            Spacer(Modifier.height(12.dp))
+            HorizontalDivider(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                color = MaterialTheme.colorScheme.outlineVariant,
+            )
+            Spacer(Modifier.height(12.dp))
+            ShowcaseScreen(onShowcaseAppClick = onShowcaseAppClick)
         }
-        Spacer(Modifier.height(12.dp))
-        ScreenshotsList(
-            screenshotUrlList = appDetails.screenshotUrlList ?: listOf(),
-            contentPadding = PaddingValues(horizontal = 16.dp),
-        )
-        Spacer(Modifier.height(12.dp))
-        AppDescription(
-            description = appDetails.description,
-            collapsed = descriptionCollapsed,
-            onReadMoreClick = onReadMoreClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 16.dp),
-        )
-        Spacer(Modifier.height(12.dp))
-        HorizontalDivider(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            color = MaterialTheme.colorScheme.outlineVariant,
-        )
-        Spacer(Modifier.height(12.dp))
-        Developer(
-            name = appDetails.developer,
-            onClick = onDeveloperClick,
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 16.dp),
-        )
-        ShowcaseScreen()
     }
 }
 
@@ -123,6 +140,7 @@ private fun Preview() {
             onShareClick = {},
             onInstallClick = {},
             onDeveloperClick = {},
+            onShowcaseAppClick = {},
             onSimilarAppDownloadClick = {},
             modifier = Modifier.fillMaxSize(),
         )

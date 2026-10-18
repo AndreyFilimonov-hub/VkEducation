@@ -1,6 +1,7 @@
-package com.filimonov.vkeducation.listscreen
+package com.filimonov.vkeducation.listscreen.ui
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,17 +19,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.filimonov.vkeducation.App
+import com.filimonov.vkeducation.listscreen.App
 
 @Composable
 fun AppContent(
     modifier: Modifier = Modifier,
-    app: App
+    app: App,
+    onAppClick: () -> Unit
 ) {
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp, vertical = 8.dp),
+            .padding(horizontal = 16.dp, vertical = 8.dp)
+            .clickable {
+                onAppClick()
+            },
         color = MaterialTheme.colorScheme.surfaceVariant,
         shape = RoundedCornerShape(16.dp)
     ) {

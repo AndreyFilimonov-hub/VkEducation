@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.appscreen.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues

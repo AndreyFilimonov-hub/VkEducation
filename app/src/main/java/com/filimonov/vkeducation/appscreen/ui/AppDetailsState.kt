@@ -1,6 +1,8 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.appscreen.ui
 
 import androidx.compose.runtime.Immutable
+import com.filimonov.vkeducation.appscreen.AppDetails
+import com.filimonov.vkeducation.appscreen.SimilarApp
 
 @Immutable
 sealed interface AppDetailsState {
