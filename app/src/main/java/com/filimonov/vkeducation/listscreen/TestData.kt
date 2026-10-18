@@ -113,4 +113,76 @@ object TestData {
             iconResId = R.drawable.ic_app_v2
         )
     )
+
+    val showcaseFirstPage = listOf(
+        App(
+            id = 1,
+            name = "ChatFlow",
+            description = "Общение с друзьями и коллегами",
+            category = Category.SOCIAL,
+            iconResId = R.drawable.ic_app_v4
+        ),
+        App(
+            id = 2,
+            name = "Taskly",
+            description = "Планирование задач и ежедневных дел",
+            category = Category.PRODUCTIVITY,
+            iconResId = R.drawable.ic_app_v3
+        ),
+        App(
+            id = 3,
+            name = "MovieBox",
+            description = "Фильмы, сериалы и персональные рекомендации",
+            category = Category.ENTERTAINMENT,
+            iconResId = R.drawable.ic_app_v2
+        )
+    )
+
+    val showcaseSecondPage = listOf(
+        App(
+            id = 4,
+            name = "LearnUp",
+            description = "Курсы и материалы для обучения",
+            category = Category.EDUCATION,
+            iconResId = R.drawable.ic_app_v4
+        ),
+        App(
+            id = 5,
+            name = "MoneyTrack",
+            description = "Учёт доходов и расходов",
+            category = Category.FINANCE,
+            iconResId = R.drawable.ic_app_v2
+        ),
+        App(
+            id = 6,
+            name = "FitLife",
+            description = "Тренировки и отслеживание активности",
+            category = Category.HEALTH,
+            iconResId = R.drawable.ic_app_v1
+        )
+    )
+
+    val showcaseThirdPage = listOf(
+        App(
+            id = 7,
+            name = "ShopEasy",
+            description = "Удобные покупки товаров онлайн",
+            category = Category.SHOPPING,
+            iconResId = R.drawable.ic_app_v2
+        ),
+        App(
+            id = 8,
+            name = "TripGo",
+            description = "Планирование поездок и путешествий",
+            category = Category.TRAVEL,
+            iconResId = R.drawable.ic_app_v4
+        ),
+        App(
+            id = 9,
+            name = "FileMaster",
+            description = "Управление файлами на устройстве",
+            category = Category.TOOLS,
+            iconResId = R.drawable.ic_app_v3
+        )
+    )
 }
