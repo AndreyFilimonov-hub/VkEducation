@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation
+package com.filimonov.vkeducation.domain.entity
 
 data class App(
     val id: Int,

@@ -1,4 +1,8 @@
-package com.filimonov.vkeducation
+package com.filimonov.vkeducation.data
+
+import com.filimonov.vkeducation.domain.entity.App
+import com.filimonov.vkeducation.domain.entity.Category
+import com.filimonov.vkeducation.R
 
 object TestData {
 
