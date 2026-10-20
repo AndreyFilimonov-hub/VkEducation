@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation.ui.theme
+package com.filimonov.vkeducation.presentation.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
