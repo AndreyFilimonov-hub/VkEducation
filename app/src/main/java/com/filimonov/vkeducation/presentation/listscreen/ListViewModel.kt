@@ -2,14 +2,20 @@ package com.filimonov.vkeducation.presentation.listscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.filimonov.vkeducation.data.TestData
+import com.filimonov.vkeducation.data.repository.AppRepositoryImpl
+import com.filimonov.vkeducation.domain.usecase.GetAppsUseCase
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 class ListViewModel : ViewModel() {
+
+    private val repository = AppRepositoryImpl()
+    private val getAppsUseCase = GetAppsUseCase(repository)
 
     private val _state = MutableStateFlow(ListState())
     val state = _state.asStateFlow()
@@ -18,17 +24,18 @@ class ListViewModel : ViewModel() {
     val event = _event.asSharedFlow()
 
     init {
-        _state.value = ListState(TestData.apps)
+        getAppsUseCase()
+            .onEach { apps ->
+                _state.value = ListState(apps)
+            }
+            .launchIn(viewModelScope)
     }
 
     fun processCommand(command: ListCommand) {
         when (command) {
             is ListCommand.LogoClick -> {
                 viewModelScope.launch {
-                    val appName = TestData.apps.find { app -> app.id == command.appId }?.name
-                        ?: throw RuntimeException()
-
-                    _event.emit(ListEvent.LogoClickEvent(appName))
+                    _event.emit(ListEvent.LogoClickEvent(command.appName))
                 }
             }
         }
