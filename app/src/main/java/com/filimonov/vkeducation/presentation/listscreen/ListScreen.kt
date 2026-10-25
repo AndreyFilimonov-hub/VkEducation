@@ -113,7 +113,7 @@ fun ListScreen(
                         AppContent(
                             app = app,
                             onLogoClick = {
-                                viewModel.processCommand(ListCommand.LogoClick(app.id))
+                                viewModel.processCommand(ListCommand.LogoClick(app.name))
                             }
                         )
                     }
