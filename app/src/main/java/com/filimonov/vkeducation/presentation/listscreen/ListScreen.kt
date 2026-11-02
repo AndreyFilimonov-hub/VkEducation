@@ -36,8 +36,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.filimonov.vkeducation.R
 import com.filimonov.vkeducation.domain.entity.App
 
@@ -45,7 +45,7 @@ import com.filimonov.vkeducation.domain.entity.App
 @Composable
 fun ListScreen(
     modifier: Modifier = Modifier,
-    viewModel: ListViewModel = viewModel()
+    viewModel: ListViewModel = hiltViewModel()
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
