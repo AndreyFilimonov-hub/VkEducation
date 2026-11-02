@@ -1,6 +1,5 @@
 package com.filimonov.vkeducation.presentation.listscreen
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.filimonov.vkeducation.domain.usecase.GetAppsUseCase
@@ -28,7 +27,6 @@ class ListViewModel @Inject constructor(
     init {
         getAppsUseCase()
             .onEach { apps ->
-                Log.d("AAA", apps.toString())
                 _state.value = ListState(apps)
             }
             .launchIn(viewModelScope)
