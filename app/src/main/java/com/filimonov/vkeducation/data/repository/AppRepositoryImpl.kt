@@ -6,10 +6,11 @@ import com.filimonov.vkeducation.data.mapper.toEntity
 import com.filimonov.vkeducation.domain.entity.App
 import com.filimonov.vkeducation.domain.entity.Category
 import com.filimonov.vkeducation.domain.repository.AppRepository
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class AppRepositoryImpl : AppRepository {
+class AppRepositoryImpl @Inject constructor() : AppRepository {
 
     val apps = listOf(
         AppDto(
@@ -120,6 +121,6 @@ class AppRepositoryImpl : AppRepository {
     )
 
     override fun getApps(): Flow<List<App>> {
-        return flow { apps.forEach(AppDto::toEntity) }
+        return flow { emit(apps.map(AppDto::toEntity)) }
     }
 }
