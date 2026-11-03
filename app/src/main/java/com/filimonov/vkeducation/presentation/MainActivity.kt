@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.filimonov.vkeducation.presentation.listscreen.ListScreen
+import com.filimonov.vkeducation.presentation.navigation.AppNavHost
 import com.filimonov.vkeducation.presentation.ui.theme.VkEducationTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,7 +16,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             VkEducationTheme {
-                ListScreen()
+                AppNavHost()
             }
         }
     }
