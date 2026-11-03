@@ -1,9 +1,9 @@
 package com.filimonov.vkeducation.domain.entity
 
 data class App(
-    val id: Int,
+    val id: String,
     val name: String,
     val description: String,
-    val category: Category,
-    val iconResId: Int
+    val category: String,
+    val iconUrl: String
 )
