@@ -23,30 +23,32 @@ import com.filimonov.vkeducation.presentation.ui.theme.VkEducationTheme
 
 @Composable
 fun ScreenshotsList(
-    screenshotUrlList: List<String>,
+    screenshotUrlList: List<String>?,
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
 ) {
-    Column(modifier) {
-        Text(
-            text = stringResource(R.string.app_details_screenshots),
-            modifier = Modifier.padding(contentPadding),
-        )
-        Spacer(Modifier.height(8.dp))
-        HorizontalPager(
-            modifier = Modifier.fillMaxWidth(),
-            contentPadding = contentPadding,
-            pageSpacing = 8.dp,
-            state = rememberPagerState { screenshotUrlList.size },
-        ) { index ->
-            AsyncImage(
-                model = screenshotUrlList[index],
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(16f / 9f)
-                    .clip(RoundedCornerShape(8.dp))
+    if (!screenshotUrlList.isNullOrEmpty()) {
+        Column(modifier) {
+            Text(
+                text = stringResource(R.string.app_details_screenshots),
+                modifier = Modifier.padding(contentPadding),
             )
+            Spacer(Modifier.height(8.dp))
+            HorizontalPager(
+                modifier = Modifier.fillMaxWidth(),
+                contentPadding = contentPadding,
+                pageSpacing = 8.dp,
+                state = rememberPagerState { screenshotUrlList.size },
+            ) { index ->
+                AsyncImage(
+                    model = screenshotUrlList[index],
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .aspectRatio(16f / 9f)
+                        .clip(RoundedCornerShape(8.dp))
+                )
+            }
         }
     }
 }

@@ -26,7 +26,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -46,7 +45,8 @@ import com.filimonov.vkeducation.domain.entity.App
 @Composable
 fun ListScreen(
     modifier: Modifier = Modifier,
-    viewModel: ListViewModel = hiltViewModel()
+    viewModel: ListViewModel = hiltViewModel(),
+    onAppClick: (String) -> Unit
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -59,14 +59,6 @@ fun ListScreen(
         }
     } else {
         val snackbarHostState = remember { SnackbarHostState() }
-
-        LaunchedEffect(Unit) {
-            viewModel.event.collect { listEvent ->
-                when (listEvent) {
-                    is ListEvent.LogoClickEvent -> snackbarHostState.showSnackbar(listEvent.appName)
-                }
-            }
-        }
 
         Scaffold(
             modifier = Modifier.fillMaxSize(),
@@ -113,9 +105,7 @@ fun ListScreen(
                     { app ->
                         AppContent(
                             app = app,
-                            onLogoClick = {
-                                viewModel.processCommand(ListCommand.LogoClick(app.name))
-                            }
+                            onAppClick = onAppClick
                         )
                     }
                 }
@@ -129,14 +119,14 @@ fun ListScreen(
 private fun AppContent(
     modifier: Modifier = Modifier,
     app: App,
-    onLogoClick: () -> Unit
+    onAppClick: (String) -> Unit
 ) {
     Surface(
         modifier = modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp)
             .clickable {
-                onLogoClick()
+                onAppClick(app.id)
             },
         color = MaterialTheme.colorScheme.surfaceVariant,
         shape = RoundedCornerShape(16.dp)
