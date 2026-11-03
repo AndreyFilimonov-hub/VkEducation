@@ -48,7 +48,6 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
     implementation(libs.retrofit)
-    implementation(libs.kotlinx.serialization.json)
     implementation(libs.converter.kotlinx.serialization)
     implementation(libs.androidx.hilt.lifecycle.viewmodel.compose)
     implementation(libs.hilt.android)

@@ -1,17 +1,16 @@
-package com.filimonov.vkeducation.navigation
+package com.filimonov.vkeducation.presentation.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.filimonov.vkeducation.appscreen.AppDetails
-import com.filimonov.vkeducation.appscreen.Category
-import com.filimonov.vkeducation.appscreen.SimilarApp
-import com.filimonov.vkeducation.appscreen.navigation.AppRoute
-import com.filimonov.vkeducation.appscreen.ui.AppDetailsContent
-import com.filimonov.vkeducation.appscreen.ui.AppDetailsState
-import com.filimonov.vkeducation.listscreen.navigation.ListRoute
-import com.filimonov.vkeducation.listscreen.ui.ListScreen
+import com.filimonov.vkeducation.presentation.appscreen.navigation.AppRoute
+import com.filimonov.vkeducation.domain.entity.AppDetails
+import com.filimonov.vkeducation.presentation.appscreen.AppDetailsContent
+import com.filimonov.vkeducation.presentation.appscreen.AppDetailsState
+import com.filimonov.vkeducation.presentation.appscreen.SimilarApp
+import com.filimonov.vkeducation.presentation.listscreen.ListScreen
+import com.filimonov.vkeducation.presentation.listscreen.navigation.ListRoute
 
 @Composable
 fun AppNavHost() {
@@ -23,11 +22,7 @@ fun AppNavHost() {
         startDestination = ListRoute
     ) {
         composable<ListRoute> {
-            ListScreen(
-                onAppClick = {
-                    navController.navigate(AppRoute)
-                }
-            )
+            ListScreen()
         }
         composable<AppRoute> {
             AppDetailsContent(
@@ -36,7 +31,7 @@ fun AppNavHost() {
                         id = "fa2e31b8-1234-4cf7-9914-108a170a1b01",
                         name = "Гильдия Героев: Экшен ММО РПГ",
                         developer = "VK Play",
-                        category = Category.GAME,
+                        category = "Игры",
                         ageRating = 12,
                         size = 223.7f,
                         screenshotUrlList = listOf(
@@ -64,9 +59,6 @@ fun AppNavHost() {
                 onShareClick = {},
                 onInstallClick = {},
                 onDeveloperClick = {},
-                onShowcaseAppClick = {
-                    navController.navigate(ListRoute)
-                },
                 onSimilarAppDownloadClick = {}
             )
         }
