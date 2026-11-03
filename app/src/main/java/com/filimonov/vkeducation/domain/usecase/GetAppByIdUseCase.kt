@@ -8,7 +8,9 @@ class GetAppByIdUseCase @Inject constructor(
     private val repository: AppRepository
 ) {
 
-    suspend operator fun invoke(id: String): AppDetails {
-        return repository.getAppById(id)
+    suspend operator fun invoke(id: String): Result<AppDetails> {
+        return runCatching {
+            repository.getAppById(id)
+        }
     }
 }
