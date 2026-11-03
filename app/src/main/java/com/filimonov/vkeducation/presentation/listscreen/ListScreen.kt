@@ -38,6 +38,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import coil3.compose.AsyncImage
 import com.filimonov.vkeducation.R
 import com.filimonov.vkeducation.domain.entity.App
 
@@ -133,7 +134,10 @@ private fun AppContent(
     Surface(
         modifier = modifier
             .fillMaxWidth()
-            .padding(horizontal = 16.dp),
+            .padding(horizontal = 16.dp)
+            .clickable {
+                onLogoClick()
+            },
         color = MaterialTheme.colorScheme.surfaceVariant,
         shape = RoundedCornerShape(16.dp)
     ) {
@@ -142,13 +146,11 @@ private fun AppContent(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Image(
+            AsyncImage(
                 modifier = Modifier
                     .size(56.dp)
-                    .clickable {
-                        onLogoClick()
-                    },
-                painter = painterResource(app.iconResId),
+                    .clip(RoundedCornerShape(16.dp)),
+                model = app.iconUrl,
                 contentDescription = null
             )
             Column {
@@ -162,7 +164,7 @@ private fun AppContent(
                 ) {
                     Text(
                         modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp),
-                        text = app.category.title,
+                        text = app.category,
                         fontWeight = FontWeight.SemiBold,
                         color = MaterialTheme.colorScheme.primary
                     )
