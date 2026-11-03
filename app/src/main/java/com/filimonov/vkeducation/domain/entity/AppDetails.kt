@@ -1,10 +1,10 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.domain.entity
 
 data class AppDetails(
     val id: String,
     val name: String,
     val developer: String,
-    val category: Category,
+    val category: String,
     val ageRating: Int,
     val size: Float,
     val iconUrl: String,

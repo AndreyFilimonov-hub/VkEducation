@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.presentation.appscreen
 
 data class SimilarApp(
     val id: String,

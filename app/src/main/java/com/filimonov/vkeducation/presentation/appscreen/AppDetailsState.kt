@@ -1,6 +1,7 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.presentation.appscreen
 
 import androidx.compose.runtime.Immutable
+import com.filimonov.vkeducation.domain.entity.AppDetails
 
 @Immutable
 sealed interface AppDetailsState {

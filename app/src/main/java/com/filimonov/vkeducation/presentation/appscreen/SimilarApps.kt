@@ -1,4 +1,4 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.presentation.appscreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -22,9 +22,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import coil.compose.AsyncImage
+import coil3.compose.AsyncImage
 import com.filimonov.vkeducation.R
-import com.filimonov.vkeducation.ui.theme.VkEducationTheme
+import com.filimonov.vkeducation.presentation.ui.theme.VkEducationTheme
 
 @Composable
 fun SimilarApps(

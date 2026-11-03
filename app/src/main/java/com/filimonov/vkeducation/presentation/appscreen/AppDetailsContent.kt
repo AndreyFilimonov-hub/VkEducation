@@ -1,7 +1,5 @@
-package com.filimonov.vkeducation.appscreen
+package com.filimonov.vkeducation.presentation.appscreen
 
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -9,13 +7,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.filimonov.vkeducation.ui.theme.VkEducationTheme
+import com.filimonov.vkeducation.domain.entity.AppDetails
+import com.filimonov.vkeducation.presentation.ui.theme.VkEducationTheme
 
 @Composable
 fun AppDetailsContent(
@@ -96,7 +97,7 @@ private fun Preview() {
                     id = "fa2e31b8-1234-4cf7-9914-108a170a1b01",
                     name = "Гильдия Героев: Экшен ММО РПГ",
                     developer = "VK Play",
-                    category = Category.GAME,
+                    category = "Игры",
                     ageRating = 12,
                     size = 223.7f,
                     screenshotUrlList = listOf(
